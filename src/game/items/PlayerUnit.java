@@ -20,19 +20,26 @@ import javax.swing.KeyStroke;
  */
 public class PlayerUnit extends Eas7DrawObject implements MouseMotionListener, KeyListener, MouseListener {
 
-    
-    // TODO Spieler blickrichtung
-    
     boolean left, right, shoot;
     private double directionX, directionY;
     private double imageAngleRad = 0;
 
     public PlayerUnit(Init init) {
         super(init);
-        setImage("player_2.png");
+        setImage("player_1.png");
         setStartPosition((getScreensizeWidth() / 2) - (getImageWidth() / 2),
                 getScreensizeHeight() - getImageHeight());
 
+        // Polygonhülle bestimmen
+        // von Links-Oben
+        int xPoints[] = {0, getImageWidth(),
+            getImageWidth(), 0};
+        int yPoints[] = {7 * getGameFactor(), 7 * getGameFactor(),
+            getImageHeight(), getImageHeight()};
+        int nPoints = 4;
+        // Polygonhülle setzten
+        setPolygon(xPoints, yPoints, nPoints);
+        //
         getInit().getCanvas().addMouseMotionListener(this);
         getInit().getCanvas().addMouseListener(this);
         getInit().getCanvas().addKeyListener(this);
@@ -50,23 +57,23 @@ public class PlayerUnit extends Eas7DrawObject implements MouseMotionListener, K
         if ((right) && (getPosition().x < getScreensizeWidth() - (getImageWidth()) - (10 * getGameFactor()))) {
             getPosition().x += 2 * getGameFactor();
         }
-        
         setImageAngleRad(imageAngleRad);
     }
 
     private void shoot() {
-        getInit().addBullet(getInit(), getPosition(), imageAngleRad);
+        getInit().addBullet(getInit(), getPosition(), imageAngleRad - 1.5);
     }
 
     @Override
-    public void mouseDragged(MouseEvent e) {}
+    public void mouseDragged(MouseEvent e) {
+    }
 
     @Override
     public void mouseMoved(MouseEvent e) {
         // die Mittelpunkt(Peilungsposition) von bild zu Maus
         directionX = e.getX() - (getImageWidth() / 2) - getPosition().x;
         directionY = e.getY() - (getImageHeight() / 2) - getPosition().y;
-        imageAngleRad = Math.atan2(directionY, directionX);
+        imageAngleRad = Math.atan2(directionY, directionX) + 1.5;
     }
 
     @Override

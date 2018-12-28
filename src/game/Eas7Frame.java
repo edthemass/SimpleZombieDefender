@@ -54,8 +54,18 @@ public class Eas7Frame {
         // Für Systemen mit mehrere Monitoren
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         
+        int solution = 2;
+        switch(solution){
+            case 1: frameSize = new Dimension(480 , 270); break;
+            case 2: frameSize = new Dimension(960 , 540); break;
+            case 3: frameSize = new Dimension(1440 , 810); break;
+            case 4: frameSize = new Dimension(1920 , 1080); break;
+                default: break;
+        }
         // zum Testen von eigenen Auflösungen
-        frameSize = new Dimension(480 , 270);
+        
+        
+        
         
         // richtet nach Monitor
 //        frameSize = new Dimension(gd.getDisplayMode().getWidth(), gd.getDisplayMode().getHeight());
