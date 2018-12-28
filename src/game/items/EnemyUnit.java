@@ -19,9 +19,6 @@ import java.util.Random;
  */
 public class EnemyUnit extends Eas7DrawObject {
 
-    
-    private Init init;
-
     public EnemyUnit(Init init) {
         super(init);
         setImage("player_1.png");

@@ -108,8 +108,8 @@ public class Init {
         return frameSize;
     }
 
-    public void addBullet(Init init, Point2D.Double position, double angle, int playerWidth) {
-        this.objects.add(new BulletUnit(init, position, angle, playerWidth));
+    public void addBullet(Init init, Point2D.Double position, double angle) {
+        this.objects.add(new BulletUnit(init, position, angle));
     }
 
     public Magazin getMagazin() {

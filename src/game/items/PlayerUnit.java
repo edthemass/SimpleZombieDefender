@@ -60,7 +60,7 @@ public class PlayerUnit extends Eas7DrawObject implements MouseMotionListener, K
     }
 
     private void shoot() {
-        getInit().addBullet(getInit(), getPosition(), imageAngleRad, getImageWidth());
+        getInit().addBullet(getInit(), getPosition(), imageAngleRad);
     }
 
     @Override

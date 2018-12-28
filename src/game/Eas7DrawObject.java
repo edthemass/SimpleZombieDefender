@@ -113,5 +113,8 @@ public abstract class Eas7DrawObject implements Eas7Drawable{
         this.position.setLocation(x, y);
     }
     
+    public double getDirection(){
+        return this.imageAngleRad;
+    }
     
 }
