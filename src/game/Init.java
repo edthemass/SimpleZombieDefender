@@ -73,6 +73,8 @@ public class Init {
             for (Eas7Drawable i : objects) {
                 if (i.isUseless()) {
                     objects.remove(i);
+//                  Damit exception nicht auftritt!!!
+                    break;
                 }
             }
         } catch (ConcurrentModificationException e) {

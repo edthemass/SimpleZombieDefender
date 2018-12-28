@@ -7,16 +7,11 @@ package game.items;
 
 import game.Eas7DrawObject;
 import game.Init;
-import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.awt.geom.AffineTransform;
-import java.awt.geom.Point2D;
-import java.util.ArrayList;
 import javax.swing.KeyStroke;
 
 /**

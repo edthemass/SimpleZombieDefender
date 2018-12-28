@@ -6,11 +6,7 @@
 package game.items;
 
 import game.Eas7DrawObject;
-import game.Eas7Drawable;
 import game.Init;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
@@ -22,7 +18,7 @@ import static java.lang.Math.sin;
 public class BulletUnit extends Eas7DrawObject {
 
     private boolean useless = false;
-    private int lifetime = 10;
+    private int lifetime = 80;
 
     public BulletUnit(Init init, Point2D.Double position, double angle) {
         super(init);
@@ -33,16 +29,14 @@ public class BulletUnit extends Eas7DrawObject {
 
     @Override
     public void update() {
-        //position.y -= 1 * gameFactor;
 
         setPosition(getPosition().x += (getGameFactor() * 5) * cos(getDirection()),
-                    getPosition().y += (getGameFactor() * 5) * sin(getDirection())
+                getPosition().y += (getGameFactor() * 5) * sin(getDirection())
         );
 
+        lifetime--;
         if (lifetime < 0) {
             setUseless(true);
         }
-        System.err.println("lifetime" + lifetime + useless);
-        lifetime--;
     }
 }
