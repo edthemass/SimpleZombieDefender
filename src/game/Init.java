@@ -63,14 +63,10 @@ public class Init {
     }
 
     public void update() {
-
-        for (Eas7Drawable i : objects) {
-            i.update();
-        }
-
         // Alle Objekte mit Status "useless" werden aus liste gelöscht
         try {
             for (Eas7Drawable i : objects) {
+                i.update();
                 if (i.isUseless()) {
                     objects.remove(i);
 //                  Damit exception nicht auftritt!!!
