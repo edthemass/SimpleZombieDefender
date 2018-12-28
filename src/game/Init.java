@@ -5,15 +5,16 @@
  */
 package game;
 
+import game.items.Background;
 import game.items.BulletUnit;
 import game.items.EnemyUnit;
-import game.items.Background;
 import game.items.Magazin;
 import game.items.PlayerUnit;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 
 /**
  *
@@ -26,7 +27,6 @@ public class Init {
     private final Eas7Fonts fonts;
     private final Eas7Canvas canvas;
     private final Eas7Images images;
-
     private Magazin magazin;
     private ArrayList<Eas7Drawable> objects = new ArrayList<>();
 
@@ -37,7 +37,6 @@ public class Init {
     // TODO ENEMYS GREIFEN MAUER AN
     // TODO ENEMYS TÖTEN SPIELER
     // TODO INTERFACE KILLS
-    
     public Init(Eas7Canvas c, Eas7Images i, double gameFactor, Dimension frameSize) {
         this.fonts = new Eas7Fonts("OldGameFatty.ttf");
         this.canvas = c;
@@ -46,7 +45,6 @@ public class Init {
         this.frameSize = frameSize;
 
 //        interf = new GameInterface(this);
-
         objects.add(new Background(this));
         objects.add(new EnemyUnit(this));
         objects.add(new PlayerUnit(this));
@@ -66,26 +64,20 @@ public class Init {
 
     public void update() {
 
-//        gameWorld.update();
-//        player.update();
-
-//        for (EnemyUnit i : enemy) {
-//            i.update();
-//        }
         for (Eas7Drawable i : objects) {
             i.update();
         }
 
-        // BulletUnit update
-//        for (int i = 0; i < bullet.size(); i++) {
-//            bullet.get(i).update();
-//
-//            if (bullet.get(i).isUseless()) {
-//                bullet.remove(i);
-//            }
-//        }
-
-//        interf.update();
+        // Alle Objekte mit Status "useless" werden aus liste gelöscht
+        try {
+            for (Eas7Drawable i : objects) {
+                if (i.isUseless()) {
+                    objects.remove(i);
+                }
+            }
+        } catch (ConcurrentModificationException e) {
+            System.err.println(e + "\nkann den Fehler abfangen aber nicht logisch im Code lösen");
+        }
     }
 
     public Eas7Fonts getFonts() {

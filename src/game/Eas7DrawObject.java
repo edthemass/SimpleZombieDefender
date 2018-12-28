@@ -116,5 +116,15 @@ public abstract class Eas7DrawObject implements Eas7Drawable{
     public double getDirection(){
         return this.imageAngleRad;
     }
+
+    @Override
+    public boolean isUseless() {
+        return useless;
+    }
+
+    public void setUseless(boolean useless) {
+        this.useless = useless;
+    }
+    
     
 }

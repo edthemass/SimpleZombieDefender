@@ -22,7 +22,7 @@ import static java.lang.Math.sin;
 public class BulletUnit extends Eas7DrawObject {
 
     private boolean useless = false;
-    private int lifetime = 100;
+    private int lifetime = 10;
 
     public BulletUnit(Init init, Point2D.Double position, double angle) {
         super(init);
@@ -40,13 +40,9 @@ public class BulletUnit extends Eas7DrawObject {
         );
 
         if (lifetime < 0) {
-            useless = true;
+            setUseless(true);
         }
+        System.err.println("lifetime" + lifetime + useless);
         lifetime--;
     }
-
-    public boolean isUseless() {
-        return useless;
-    }
-
 }

@@ -1,11 +1,7 @@
 package game.items;
 
 import game.Eas7DrawObject;
-import game.Eas7Drawable;
 import game.Init;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.geom.Point2D;
 import java.util.Random;
 
 /*
@@ -29,7 +25,6 @@ public class EnemyUnit extends Eas7DrawObject {
 
     @Override
     public void update() {
-        
         setPosition(getPosition().x,getPosition().y += 0.5 * getGameFactor());
     }
 }

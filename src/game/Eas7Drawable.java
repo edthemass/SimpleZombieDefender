@@ -15,4 +15,5 @@ import java.awt.Graphics2D;
 public interface Eas7Drawable {
     public void draw(Graphics2D g2d);
     public void update();
+    public boolean isUseless();
 }
