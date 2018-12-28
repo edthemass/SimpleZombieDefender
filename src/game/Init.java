@@ -6,6 +6,7 @@
 package game;
 
 import game.items.Background;
+import game.items.Barricade;
 import game.items.BulletUnit;
 import game.items.EnemyUnit;
 import game.items.Magazin;
@@ -49,17 +50,23 @@ public class Init {
         objects.add(new EnemyUnit(this));
         objects.add(new PlayerUnit(this));
         objects.add(magazin = new Magazin(this, 10));
+
+        // baue Mauer
+        Point2D.Double posBaricade = new Point2D.Double(10, getFrameSize().height - (80 * getGameFactor()));
+        for (int y = 0; y < 2; y++) {
+            posBaricade.x = 10;
+            posBaricade.y += 16;
+            for (int x = 0; x < 29; x++) {
+                objects.add(new Barricade(this, posBaricade));
+                posBaricade.x += 16;
+            }
+        }
     }
 
     public void draw(Graphics2D g2d) {
-
-//        gameWorld.draw(g2d);
         for (Eas7Drawable i : objects) {
             i.draw(g2d);
-            // Remove klausel nach usless Flag eingeschaltet
         }
-
-//        interf.draw(g2d);
     }
 
     public void update() {
@@ -69,7 +76,7 @@ public class Init {
                 i.update();
                 if (i.isUseless()) {
                     objects.remove(i);
-//                  Damit exception nicht auftritt!!!
+//                  Damit exception nicht auftritt.. einfach ein break machen!!!
                     break;
                 }
             }

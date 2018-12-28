@@ -6,20 +6,34 @@
 
 package game.items;
 
-import java.awt.Graphics2D;
+import game.Eas7DrawObject;
+import game.Init;
+import java.awt.Point;
+import java.awt.geom.Point2D;
 
 /**
  *
  * @author P01004090
  */
-public class Barricade {
+public class Barricade extends Eas7DrawObject{
+
+    boolean ckracked = false;
     
-    public void draw(Graphics2D g2d) {
-//        mag.draw(g2d);
+    public Barricade(Init init, Point2D.Double position) {
+        super(init);
+        setPosition(position.x, position.y);
     }
 
+    @Override
     public void update() {
-//        mag.update();
+        if(!ckracked){
+            setImage("mauer_1.png");
+        } else {
+            setImage("mauer_2.png");
+        }
     }
+    
+    
+    
 
 }
