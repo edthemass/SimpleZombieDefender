@@ -20,7 +20,6 @@ public abstract class Eas7DrawObject implements Eas7Drawable{
     private Init init;
     private Image images;
     private int gameFactor, imageWidth, imageHeight, screensizeWidth, screensizeHeight;
-    private String imageName;
     private Point2D.Double position;
     private double directionX, directionY;
     private double imageAngleRad = 0;
@@ -110,6 +109,4 @@ public abstract class Eas7DrawObject implements Eas7Drawable{
     public Image getImages() {
         return images;
     }
-    
-    
 }

@@ -56,7 +56,7 @@ public class PlayerUnit extends Eas7DrawObject implements MouseMotionListener, K
             getPosition().x += 2 * getGameFactor();
         }
         
-//        setImageAngleRad(imageAngleRad);
+        setImageAngleRad(imageAngleRad);
     }
 
     private void shoot() {
@@ -64,8 +64,7 @@ public class PlayerUnit extends Eas7DrawObject implements MouseMotionListener, K
     }
 
     @Override
-    public void mouseDragged(MouseEvent e) {
-    }
+    public void mouseDragged(MouseEvent e) {}
 
     @Override
     public void mouseMoved(MouseEvent e) {
