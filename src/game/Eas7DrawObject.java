@@ -10,7 +10,6 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
-
 /**
  *
  * @author Edgar Strauß
@@ -109,4 +108,10 @@ public abstract class Eas7DrawObject implements Eas7Drawable{
     public Image getImages() {
         return images;
     }
+
+    public void setPosition(Double x, Double y) {
+        this.position.setLocation(x, y);
+    }
+    
+    
 }

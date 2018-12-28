@@ -1,10 +1,12 @@
 package game.items;
 
+import game.Eas7DrawObject;
 import game.Eas7Drawable;
 import game.Init;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.geom.Point2D;
+import java.util.Random;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,47 +17,22 @@ import java.awt.geom.Point2D;
  *
  * @author P01004090
  */
-public class EnemyUnit implements Eas7Drawable{
+public class EnemyUnit extends Eas7DrawObject {
 
+    
     private Init init;
-    private Image images;
-    private int gameFactor, imageWidth, imageHeight, screensizeWidth, screensizeHeight;
-    private String imageName = "player_2.png";
-    private Point2D.Double position;
 
     public EnemyUnit(Init init) {
-        
-        images = init.getImages().getImg(imageName);
-        this.init = init;
-        this.gameFactor = (int) init.getGameFactor();
-        this.imageWidth = images.getWidth(null) * gameFactor;
-        this.imageHeight = images.getHeight(null) * gameFactor;
-        this.screensizeWidth = init.getFrameSize().width;
-        this.screensizeHeight = init.getFrameSize().height;
-        this.position = new Point2D.Double();
-        
-    }
-
-    @Override
-    public void draw(Graphics2D g2d) {
-        g2d.drawImage(
-                images,
-                (int)position.x, // ist null
-                (int)position.y, // ist null
-                imageWidth,
-                imageHeight,
-                null
-        );
-        g2d.drawRect(
-                (int)position.x,
-                (int)position.y,
-                imageWidth,
-                imageHeight
-        );
+        super(init);
+        setImage("player_1.png");
+        Random ran = new Random();
+        // TODO y-Startposition random machen
+        setStartPosition(ran.nextInt(getScreensizeWidth() - getImageWidth()), -20);
     }
 
     @Override
     public void update() {
-        position.y += 0.5 * gameFactor;
+        
+        setPosition(getPosition().x,getPosition().y += 0.5 * getGameFactor());
     }
 }
