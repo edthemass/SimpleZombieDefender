@@ -7,6 +7,8 @@
 package game;
 
 import java.awt.Graphics2D;
+import java.awt.Polygon;
+import java.awt.geom.Point2D;
 
 /**
  *
@@ -16,4 +18,8 @@ public interface Eas7Drawable {
     public void draw(Graphics2D g2d);
     public void update();
     public boolean isUseless();
+    public void showBoundingBox(boolean b);
+    public boolean isContains(Point2D.Double x);
+    public Point2D.Double getPosition();
+    public Polygon getPolygon();
 }

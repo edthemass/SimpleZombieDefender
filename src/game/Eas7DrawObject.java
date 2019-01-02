@@ -5,6 +5,7 @@
  */
 package game;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Polygon;
@@ -21,15 +22,13 @@ public abstract class Eas7DrawObject implements Eas7Drawable {
     private Image images;
     private int gameFactor, imageWidth, imageHeight, screensizeWidth, screensizeHeight;
     private Point2D.Double position;
-//    private double directionX, directionY;
     private double imageAngleRad = 0;
     private AffineTransform oldAT;
     private boolean useless = false;
     private boolean showBox = true;
     private Polygon polygon;
-    private int[] xPoints = {0, 1};
-    private int[] yPoints = {0, 1};
-    private int nPoints = 2;
+
+    
 
     public Eas7DrawObject(Init init) {
         this.init = init;
@@ -37,9 +36,10 @@ public abstract class Eas7DrawObject implements Eas7Drawable {
         this.screensizeWidth = init.getFrameSize().width;
         this.screensizeHeight = init.getFrameSize().height;
         this.position = new Point2D.Double();
-
-        polygon = new Polygon(xPoints, yPoints, nPoints);
-        polygon.translate(400, 500);
+        
+        // Polygon hat kein Hülle
+        polygon = new Polygon(/*xPoints, yPoints, nPoints*/);
+        
     }
 
     @Override
@@ -58,27 +58,30 @@ public abstract class Eas7DrawObject implements Eas7Drawable {
                 imageHeight,
                 null
         );
+        g2d.drawPolygon(polygon);
+         // Polygon-Hülle transparent
         if (showBox) {
-            // Hülle
-            g2d.drawRect(
-                    0,
-                    0,
-                    imageWidth,
-                    imageHeight
-            );
-            g2d.drawPolygon(polygon);
+            g2d.setColor(new Color(0,0,0,255));
+            // Polygon-Hülle  
+        } else {
+            g2d.setColor(new Color(0,0,0,0));
         }
         g2d.setTransform(oldAT);
     }
 
     @Override
     public void update() {
+        
     }
 
     public void setImage(String str) {
         this.images = init.getImages().getImg(str);
         this.imageWidth = images.getWidth(null) * gameFactor;
         this.imageHeight = images.getHeight(null) * gameFactor;
+        
+        int[] xPointsDef = {0, imageWidth,imageWidth,0};
+        int[] yPointsDef = {0, 0, imageHeight, imageHeight};
+        setPolygon(xPointsDef, yPointsDef, 4);
     }
 
     public void setStartPosition(int x, int y) {
@@ -106,6 +109,7 @@ public abstract class Eas7DrawObject implements Eas7Drawable {
         return init;
     }
 
+    @Override
     public Point2D.Double getPosition() {
         return position;
     }
@@ -145,12 +149,24 @@ public abstract class Eas7DrawObject implements Eas7Drawable {
         polygon.npoints = nPoints;
     }
 
-    public void showBoundingBox() {
-        if (showBox) {
-            showBox = false;
-        } else {
-            showBox = true;
-        }
+    @Override
+    public void showBoundingBox(boolean b) {
+        this.showBox = b;
     }
+
+    @Override
+    public Polygon getPolygon() {
+        return this.polygon;
+    }
+    
+    @Override
+    public boolean isContains(Point2D.Double x){
+        return this.polygon.contains(x);
+    }
+    
+//    public Rectangle2D setBoundBox(double x, double y, int w, int h){
+//        
+//                return 
+//    }
 
 }

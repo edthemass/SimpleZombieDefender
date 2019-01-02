@@ -85,8 +85,7 @@ public class PlayerUnit extends Eas7DrawObject implements MouseMotionListener, K
             right = true;
         }
         // TODO Space-Taste = fun-Taste, irgend ein witziger sound
-        if ((e.getKeyCode() == KeyEvent.VK_SPACE) && (!shoot)) {
-
+        if ((e.getKeyCode() == KeyEvent.VK_SPACE)) {
             System.err.println("Leertaste");
         }
     }
@@ -99,8 +98,11 @@ public class PlayerUnit extends Eas7DrawObject implements MouseMotionListener, K
         if (e.getKeyCode() == KeyEvent.VK_D) {
             right = false;
         }
-        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-//             shoot = false;
+        if (e.getKeyCode() == KeyEvent.VK_B) {
+            getInit().showAllBoxes(false);
+        }
+        if (e.getKeyCode() == KeyEvent.VK_N) {
+            getInit().showAllBoxes(true);
         }
     }
 

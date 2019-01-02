@@ -18,4 +18,8 @@ public class Background extends Eas7DrawObject {
         super(init);
         setImage("dirt.png");
     }
+    
+//    public boolean contains(){
+//        return false;
+//    }
 }

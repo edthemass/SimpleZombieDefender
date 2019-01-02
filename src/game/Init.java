@@ -24,6 +24,7 @@ import java.util.ConcurrentModificationException;
 public class Init {
 
     private final double gameFactor;
+    private boolean showAllBoxes = true;
     private final Dimension frameSize;
     private final Eas7Fonts fonts;
     private final Eas7Canvas canvas;
@@ -31,13 +32,12 @@ public class Init {
     private Magazin magazin;
     private ArrayList<Eas7Drawable> objects = new ArrayList<>();
 
-    // TODO MAUER/BARRIKADE
     // TODO BULLETS KILL ENEMYS
     // TODO MAUER HAT LEBENSBALKEN
-    // TODO ENEMYS WERDEN GENERIERT ERSCHEINEN
     // TODO ENEMYS GREIFEN MAUER AN
     // TODO ENEMYS TÖTEN SPIELER
     // TODO INTERFACE KILLS
+    
     public Init(Eas7Canvas c, Eas7Images i, double gameFactor, Dimension frameSize) {
         this.fonts = new Eas7Fonts("OldGameFatty.ttf");
         this.canvas = c;
@@ -45,7 +45,6 @@ public class Init {
         this.gameFactor = gameFactor;
         this.frameSize = frameSize;
 
-//        interf = new GameInterface(this);
         objects.add(new Background(this));
         objects.add(new EnemyUnit(this));
         objects.add(new PlayerUnit(this));
@@ -54,11 +53,12 @@ public class Init {
         // baue Mauer
         Point2D.Double posBaricade = new Point2D.Double(10, getFrameSize().height - (80 * getGameFactor()));
         for (int y = 0; y < 2; y++) {
-            posBaricade.x = 10;
-            posBaricade.y += 16;
+            System.err.println(getGameFactor());
+            posBaricade.x = 10 * getGameFactor();
+            posBaricade.y += 16 * getGameFactor();
             for (int x = 0; x < 29; x++) {
                 objects.add(new Barricade(this, posBaricade));
-                posBaricade.x += 16;
+                posBaricade.x += 16 * getGameFactor();
             }
         }
     }
@@ -76,13 +76,23 @@ public class Init {
                 i.update();
                 if (i.isUseless()) {
                     objects.remove(i);
-//                  Damit exception nicht auftritt.. einfach ein break machen!!!
+                    // Damit exception nicht auftritt.. einfach ein break machen!!!
                     break;
+                }
+                // Zeige Bounding-Boxes
+                if (showAllBoxes) {
+                    i.showBoundingBox(true);
+                } else {
+                    i.showBoundingBox(false);
                 }
             }
         } catch (ConcurrentModificationException e) {
-            System.err.println(e + "\nkann den Fehler abfangen aber nicht logisch im Code lösen");
+            System.err.println(e);
         }
+    }
+
+    public void showAllBoxes(boolean b) {
+        showAllBoxes = b;
     }
 
     public Eas7Fonts getFonts() {
@@ -113,4 +123,7 @@ public class Init {
         return this.magazin;
     }
 
+    public ArrayList<Eas7Drawable> getObjects() {
+        return objects;
+    }
 }

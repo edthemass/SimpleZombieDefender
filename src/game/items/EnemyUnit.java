@@ -1,6 +1,7 @@
 package game.items;
 
 import game.Eas7DrawObject;
+import game.Eas7Drawable;
 import game.Init;
 import java.util.Random;
 
@@ -15,6 +16,8 @@ import java.util.Random;
  */
 public class EnemyUnit extends Eas7DrawObject {
 
+    private boolean blocked = false;
+
     public EnemyUnit(Init init) {
         super(init);
         setImage("player_1.png");
@@ -23,8 +26,22 @@ public class EnemyUnit extends Eas7DrawObject {
         setStartPosition(ran.nextInt(getScreensizeWidth() - getImageWidth()), -20);
     }
 
+    // TODO Probleme bei Mauer-Stop
     @Override
     public void update() {
-        setPosition(getPosition().x,getPosition().y += 0.5 * getGameFactor());
+
+        for (Eas7Drawable object : getInit().getObjects()) {
+
+        }
+        
+        if (blocked) {
+            setPosition(getPosition().x, getPosition().y);
+        } else {
+            setPosition(getPosition().x, getPosition().y += 0.5 * getGameFactor());
+        }
     }
+
+//    public void check(){
+//        
+//    }
 }
