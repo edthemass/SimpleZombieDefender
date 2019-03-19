@@ -7,7 +7,7 @@ package game;
 
 /**
  *
- * @author p01004090
+ * @author eas7
  */
 public class ProjectMain {
 

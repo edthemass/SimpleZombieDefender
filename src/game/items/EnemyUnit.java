@@ -12,7 +12,7 @@ import java.util.Random;
  */
 /**
  *
- * @author P01004090
+ * @author eas7
  */
 public class EnemyUnit extends Eas7DrawObject {
 

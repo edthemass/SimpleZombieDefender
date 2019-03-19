@@ -15,7 +15,7 @@ import javax.imageio.ImageIO;
 
 /**
  *
- * @author p01004090
+ * @author eas7
  */
 public final class Eas7Images {
 

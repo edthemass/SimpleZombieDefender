@@ -16,7 +16,7 @@ import javax.swing.KeyStroke;
 
 /**
  *
- * @author P01004090
+ * @author eas7
  */
 public class PlayerUnit extends Eas7DrawObject implements MouseMotionListener, KeyListener, MouseListener {
 

@@ -11,7 +11,7 @@ import java.awt.geom.Point2D;
 
 /**
  *
- * @author P01004090
+ * @author eas7
  */
 public class Barricade extends Eas7DrawObject {
 

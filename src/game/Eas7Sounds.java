@@ -25,7 +25,7 @@ import sun.audio.AudioStream;
 
 /**
  *
- * @author P01004090
+ * @author eas7
  */
 public class Eas7Sounds {
 

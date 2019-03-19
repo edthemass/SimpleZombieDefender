@@ -13,7 +13,7 @@ import static java.lang.Math.sin;
 
 /**
  *
- * @author P01004090
+ * @author eas7
  */
 public class BulletUnit extends Eas7DrawObject {
 

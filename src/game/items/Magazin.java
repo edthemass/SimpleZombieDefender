@@ -11,7 +11,7 @@ import java.awt.Graphics2D;
 
 /**
  *
- * @author P01004090
+ * @author eas7
  */
 public class Magazin extends Eas7DrawObject {
 

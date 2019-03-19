@@ -14,7 +14,7 @@ import javax.swing.JComponent;
 
 /**
  *
- * @author p01004090
+ * @author edthemass
  */
 public class Eas7Canvas extends JComponent implements Runnable {
 

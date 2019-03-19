@@ -12,7 +12,7 @@ import java.awt.geom.Point2D;
 
 /**
  *
- * @author P01004090
+ * @author eas7
  */
 public interface Eas7Drawable {
     public void draw(Graphics2D g2d);
